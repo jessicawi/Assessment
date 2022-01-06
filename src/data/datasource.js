@@ -9,23 +9,13 @@ const COOKIES_EXPIRES = 365;
 
 export default class DataSource {
     constructor() {
-        this.token = null;
-        this._claims = null;
+
     }
 
     static get shared() {
         if (!DataSource.instance) {
             DataSource.instance = new DataSource();
         }
-        // let token = Cookies.get("logintoken");
-        // if (token !== undefined && token !== "null") {
-        //     try {
-        //         DataSource.instance._claims = token;
-        //         DataSource.instance.token = token;
-        //     } catch (err) {
-        //         console.error("Couldn't decrypt token: ", err);
-        //     }
-        // }
         return DataSource.instance;
     }
 
@@ -50,11 +40,6 @@ export default class DataSource {
             return await parseResponseAndHandleErrors(response);
         } catch (err) {
             console.log(err);
-            if (err.type === "token_expired" && (endPoint !== 'logout')) {
-                await this.logout(false, false);
-            } else {
-                throw err;
-            }
         }
     }
 
@@ -170,22 +155,8 @@ export default class DataSource {
     |--------------------------------------------------------------------------
     */
 
-    async login(username = "c01", password = "qweqwe2020", grantType = "password") {
-        const data = {
-            grant_type: grantType,
-            username: username,
-            password: password,
-        };
-
-        // const json = await this.callAPI2("token", "POST", null, data);
-        const json = await this.callAPI2("/token", "POST", null, data, true, false, true, 10000, true);
-        if (json?.access_token) {
-            let token = json.access_token;
-            Cookies.set("logintoken", token, {expires: COOKIES_EXPIRES});
-            this.token = json.access_token;
-        }
-
-        return json;
+    getWeatherByCity(city) {
+        return this.callAPI("/data/2.5/weather?q=" + city + "&appid=cac7896d4116c994e6bb052faeea0e21", "GET", null, null);
     }
 
 }

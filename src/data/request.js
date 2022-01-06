@@ -2,8 +2,7 @@ import QueryString from "querystring";
 import {ERROR_INVALID_RESPONSE, ERROR_ACCESS_DENIED, ERROR_STATUS_CODE, ERROR_TOKEN_EXPIRED} from "../const/constError";
 
 
-const apiHost = "https://api.nuxio.org";
-// const apiHost = "http://miveapi.bclg.in";
+const apiHost = "http://api.openweathermap.org";
 
 function URLForEndpoint(endpoint, params = null) {
     let url = apiHost + endpoint;
