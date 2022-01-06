@@ -1,0 +1,41 @@
+
+.tabItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 15px 20px 7px;
+  width: 130px;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  background: white;
+  border-radius: 15px;
+  border: 1px solid #ECECEC;
+  box-sizing: border-box;
+  filter: drop-shadow(0px 1px 4px #ECECEC);
+  line-height: 26px;
+  font-weight: bold;
+
+  img {
+    display: block;
+    height: 40px;
+  }
+}
+
+.selected {
+  border: 1px solid rgb(78, 71, 220);
+
+}
+
+.tabLine {
+  padding: 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: #909ba5;
+}
+
+.tabLine.selected {
+  border-width: 0 0 1px;
+  color: #589BE9;
+}

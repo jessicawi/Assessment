@@ -1,0 +1,11 @@
+.b2Table{
+  border-radius: 10px 10px 0px 0px
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  --bs-table-accent-bg: #EAF0F7 !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(even) {
+  --bs-table-accent-bg: #F7FAFF !important;
+}

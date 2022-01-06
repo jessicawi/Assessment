@@ -1,38 +1,48 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "5.0.0",
-    "web-vitals": "^2.1.2"
+  "main": "index.js",
+  "name": "assessment",
+  "version": "0.0.1",
+  "author": "assessment",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": []
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "webpack serve --env NODE_ENV=dev --port 7003 --hot --mode development --config webpack.dev.config.js",
+    "build-dev": "webpack --mode production --env dev --progress",
+    "build-prod": "webpack --mode production --env production --progress"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "@babel/cli": "^7.15.4",
+    "@babel/core": "^7.15.5",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.15.4",
+    "@babel/preset-react": "^7.14.5",
+    "@soywod/pin-field": "^0.2.1",
+    "babel-loader": "^8.2.2",
+    "bootstrap": "5.1.0",
+    "css-loader": "^6.2.0",
+    "file-loader": "^6.2.0",
+    "global": "^4.4.0",
+    "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^2.4.6",
+    "node-sass": "^6.0.1",
+    "react": "^17.0.2",
+    "react-base64-downloader": "^2.1.7",
+    "react-dom": "^17.0.2",
+    "react-responsive": "^9.0.0-beta.4",
+    "react-toastify": "^8.0.2",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "devDependencies": {
+    "reactstrap": "^8.10.0",
+    "webpack-dev-server": "^4.1.0"
+  },
+  "private": true
 }
