@@ -1,7 +1,7 @@
 const uiVariables = {
     font: {
         xs: 9,
-        sm: 11,
+        sm: 12,
         md: 13,
         cs: 15,
         lg: 16,
@@ -24,7 +24,7 @@ const uiVariables = {
         text: "#8E8E8E",
         text2:"#596D8D",
         greyText: "#888",
-        darkText: "#20334A",
+        darkText: "#333",
         darkText2: "#333333",
         lightText: "#fdf0ff",
         bg: "#f1f1f1",

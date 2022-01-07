@@ -1,0 +1,22 @@
+.b2icon {
+  background: #f1f1f1;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  transition: all 0.3s ease;
+
+  &:hover{
+    background: #cdd3d9;
+  }
+
+  &.error{
+    background: #f9d7d7;
+    color: #dc3545;
+    &:hover{
+      background: #cdd3d9;
+    }
+  }
+}

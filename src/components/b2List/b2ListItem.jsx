@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import "./b2ListItem.scss"
 
 const B2ListItem = ({className, label, value, children}) => {
     const cn = [className];
@@ -18,7 +17,7 @@ const B2ListItem = ({className, label, value, children}) => {
     }
 
     return (
-        <div className={classNames("b2list-item", cn)}>
+        <div className={classNames("b2list-item", cn, "border-bottom","pb-3")}>
             {node}
         </div>
     );

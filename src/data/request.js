@@ -62,7 +62,7 @@ function NewHtmlRequest(method, authToken = null) {
 async function parseResponseAndHandleErrors(response) {
     // If not successful, throw JSON as response
     const responseStatusNumber = Number(response.status);
-    console.log(response,"response")
+    // console.log(response,"response")
 
     if (responseStatusNumber >= 400 && responseStatusNumber <= 599) {
         switch (responseStatusNumber) {

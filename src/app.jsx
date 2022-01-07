@@ -6,9 +6,11 @@ import {toast} from "react-toastify";
 // import {autoUpdateState} from "./data/fetchData";
 // import constApi from "./data/constApi";
 import "./assets/bootstrap.min.css"
+import "./assets/font-awesome.min.css"
 import Toast from "./helpers/toast";
 import WeatherPage from "./pages/weatherPage/weatherPage";
 import {Container} from "reactstrap"
+
 
 toast.configure({
     autoClose: 5000,
