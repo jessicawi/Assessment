@@ -1,5 +1,6 @@
 import QueryString from "querystring";
 import {ERROR_INVALID_RESPONSE, ERROR_ACCESS_DENIED, ERROR_STATUS_CODE, ERROR_TOKEN_EXPIRED} from "../const/constError";
+import Toast from "../helpers/toast";
 
 
 const apiHost = "http://api.openweathermap.org";
@@ -27,9 +28,9 @@ function URLForEndpoint(endpoint, params = null) {
 //     return url;
 // }
 
-function NewRequest(method, authToken = null, hasContentType = true) {
+function NewRequest(method, authToken = null, hasContentType = false) {
     const headers = new Headers();
-    const mode = 'no-cors';
+    // const mode = 'no-cors';
     if (hasContentType) {
         headers.append("Content-Type", "application/json");
     }
@@ -40,7 +41,6 @@ function NewRequest(method, authToken = null, hasContentType = true) {
 
     return {
         method,
-        mode,
         headers,
     };
 }
@@ -62,6 +62,7 @@ function NewHtmlRequest(method, authToken = null) {
 async function parseResponseAndHandleErrors(response) {
     // If not successful, throw JSON as response
     const responseStatusNumber = Number(response.status);
+    console.log(response,"response")
 
     if (responseStatusNumber >= 400 && responseStatusNumber <= 599) {
         switch (responseStatusNumber) {
@@ -70,6 +71,9 @@ async function parseResponseAndHandleErrors(response) {
 
             case ERROR_STATUS_CODE.TOKEN_EXPIRED:
                 throw ERROR_TOKEN_EXPIRED;
+
+            case ERROR_STATUS_CODE.NOT_FOUND:
+                Toast.init.error.show("Not Found");
 
             default:
                 throw await response.json();
