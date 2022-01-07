@@ -6,25 +6,44 @@ import B2Input from "../../components/b2Form/b2Input/b2Input";
 import B2Button from "../../components/b2Button/b2Button";
 import uiVariables from "../../config/uiVariables";
 import DataSource from "../../data/datasource";
+import Toast from "../../helpers/toast";
 
 const WeatherPage = () => {
-    const [city, setCity] = useState(null)
-    const getWeather = () => {
-        const result = DataSource.shared.getWeatherByCity(city)
-    }
+    const [city, setCity] = useState("Penang");
+    const [country, setCountry] = useState("Malaysia");
+
+    const getWeather = async () => {
+        try {
+            const result = await DataSource.shared.getWeatherByCity(city, country);
+            console.log(result)
+        } catch (e) {
+            Toast.init.error.show(e);
+            console.log(e, "getWeather err")
+        }
+    };
+
+    const resetForm = () => {
+        setCountry("");
+        setCity("");
+    };
     return (
-        <div>
+        <div className={"rounded p-3"} style={{backgroundColor: uiVariables.color.bg2}}>
             <B2Heading type={"h3"} bold className={"border-bottom pb-3 mb-3"}>Today's Weather</B2Heading>
             <B2Row alignItems={"center"}>
                 <B2Text className={"pe-2"}>City</B2Text>
                 <B2Input classes={"me-2"}
-                    value={city}
-                    onChangeText={(e) => setCity(e.target.value)}/>
+                         value={city}
+                         onChangeText={(e) => setCity(e.target.value)}/>
                 <B2Text className={"pe-2"}>Country</B2Text>
-                <B2Input classes={"me-2"}/>
+                <B2Input classes={"me-2"}
+                         value={country}
+                         onChangeText={(e) => setCountry(e.target.value)}/>
                 <B2Button classes={"me-2"} onClick={getWeather}> Search</B2Button>
-                <B2Button color={uiVariables.color.error}> Clear</B2Button>
+                <B2Button color={uiVariables.color.error} onClick={resetForm}> Clear</B2Button>
             </B2Row>
+
+            <B2Heading type={"h5"} bold className={"border-bottom pb-3 mb-3"} color={uiVariables.color.secondary}>Search History</B2Heading>
+
         </div>
     )
 }

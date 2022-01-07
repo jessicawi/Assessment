@@ -19,9 +19,9 @@ export default class DataSource {
         return DataSource.instance;
     }
 
-    async callAPI(endPoint, method = "GET", queryObject, requestBody, hasContentType = true) {
+    async callAPI(endPoint, method = "GET", queryObject, requestBody, hasContentType = false) {
         const url = URLForEndpoint(endPoint, queryObject);
-        const request = NewRequest(method, this.token, hasContentType);
+        const request = NewRequest(method, null, hasContentType);
         if (!hasContentType) {
             delete request.headers['Content-Type'];
             request.body = requestBody;
@@ -32,14 +32,14 @@ export default class DataSource {
         try {
             response = await fetch(url, request);
         } catch (err) {
-            console.log(err);
+            console.log("callAPI err", err);
             throw ERROR_SERVER_UNREACHABLE;
         }
 
         try {
             return await parseResponseAndHandleErrors(response);
         } catch (err) {
-            console.log(err);
+            console.log(err, "parseResponseAndHandleErrors");
         }
     }
 
@@ -155,8 +155,11 @@ export default class DataSource {
     |--------------------------------------------------------------------------
     */
 
-    getWeatherByCity(city) {
-        return this.callAPI("/data/2.5/weather?q=" + city + "&appid=cac7896d4116c994e6bb052faeea0e21", "GET", null, null);
+    getWeatherByCity(city, country) {
+        const data = {
+            city, country
+        };
+        return this.callAPI(`/data/2.5/weather?q=${city},${country}&appid=cac7896d4116c994e6bb052faeea0e21`, "GET", null, null);
     }
 
 }
